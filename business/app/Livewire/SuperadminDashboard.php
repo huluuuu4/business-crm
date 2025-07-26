@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class SuperadminDashboard extends Component
 {
     use WithPagination;
 
     // Properties for editing a user's role
+    #[URL]
+     public ?int $highlight = null;
     public bool $showEditModal = false;
     public ?User $editingUser = null;
     public string $newRole = '';

@@ -19,5 +19,6 @@ return Application::configure(basePath: dirname(__DIR__))
     // Add this method to manually register our provider
     ->withProviders([
         \App\Providers\AuthServiceProvider::class,
+        \App\Providers\AppServiceProvider::class,
     ])
     ->create();

@@ -2,20 +2,30 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use App\Models\User;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
+use App\Listeners\SendNewUserNotification;
 
-class AuthServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
-    protected $policies = [];
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
-        // dd('Gate is being checked'); // Add this line for the test
-         // This rule now grants access to both 'admin' and 'superadmin'
-    Gate::define('is-admin', function (User $user) {
-        return in_array($user->role, ['admin', 'superadmin']);
-    });
+        // Connect the event to the listener here
+        // Event::listen(
+        //     Registered::class,
+        //     SendNewUserNotification::class
+        // );
     }
 }

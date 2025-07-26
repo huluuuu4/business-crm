@@ -28,7 +28,7 @@
                             </thead>
                             <tbody>
                                 @forelse($pendingUsers as $user)
-                                    <tr class="border-b">
+                                    <tr wire:key="pending-{{ $user->id }}">
                                         <td class="px-4 py-2">{{ $user->name }}</td>
                                         <td class="px-4 py-2">{{ $user->email }}</td>
                                         <td class="px-4 py-2">
@@ -61,7 +61,7 @@
                             </thead>
                             <tbody>
                                 @forelse($approvedUsers as $user)
-                                    <tr class="border-b">
+                                    <tr class="border-b @if($highlight === $user->id) bg-yellow-100 @endif" wire:key="approved-{{ $user->id }}">
                                         <td class="px-4 py-2">{{ $user->name }}</td>
                                         <td class="px-4 py-2">{{ $user->email }}</td>
                                         <td class="px-4 py-2">{{ $user->role }}</td>
